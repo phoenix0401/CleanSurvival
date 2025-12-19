@@ -3,13 +3,13 @@ import pandas as pd
 import json
 
 
-path = "learn2clean/datasets/rotterdam_missing_MNAR/rotterdam_missing_50_MNAR.csv"  
+path = "learn2clean/datasets/rotterdam_missing_MAR/rotterdam_missing_10_MAR.csv"  #insert the dataset path here
 file_name = path.split("/")[-1]
-json_path = 'C:/Users/yosef/Desktop/Learn2Clean_extended/python-package/config.json'
+json_path = "config.json"
 dataset = pd.read_csv(path)
-dataset.drop('rownames', axis=1, inplace=True)
+#dataset.drop('rownames', axis=1, inplace=True)
 dataset.drop('pid', axis=1, inplace=True)
-time_column = "dtime"
+time_column = "dtime" #change these according to the time and event column in the dataset
 event_column = "death"
 model = ""
 available_models = ['RSF', 'COX', 'NN', 'OLS', 'LASSO_REG', 'MARS']

@@ -89,3 +89,7 @@ CleanSurvival can be used in two ways:
    - `-lf`: Path to the file for editing the Q-Learning graph.
    - `-a`: Cleaning algorithm (CleanSurvival (L), random (R), custom (C), or no_preparation (N)).
    - `-ao`: Options for the cleaning algorithm (number of experiments for random, or path to a file containing pipelines for custom).
+
+## Evaluation
+
+IBS and Brier Score can be computed separately by running 'python ibs_eval.py' and 'python brier_eval.py'.

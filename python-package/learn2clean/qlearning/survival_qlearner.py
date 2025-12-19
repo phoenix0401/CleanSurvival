@@ -411,6 +411,7 @@ class SurvivalQlearner:
                 if a == 10:
                     # Execute Random Survival Forest
                     print(f'\nIN RSF --------------------------------> {dataset}\n\n')
+                    dataset.to_csv(f"./save/rotterdam_cox_L/{self.file_name}_pipeline_{'_'.join(str(x) for x in actions_list)}_RSF_cleaned.csv", index=False)
                     config = self.get_config_file("RSF")
                     rsf = L2C_class[a](dataset=dataset, time_column=time_col, target_goal=event_col, config=config, verbose=self.verbose)
                     survival_probabilities, c_index = rsf.fit_rsf_model()
@@ -422,6 +423,7 @@ class SurvivalQlearner:
                     print("\n\n\n\n\n\n\n")
                     print(dataset)
                     print("\n\n\n\n\n\n\n")
+                    dataset.to_csv(f"./save/rotterdam_cox_L/{self.file_name}_pipeline_{'_'.join(str(x) for x in actions_list)}_COX_cleaned.csv", index=False)
                     # TODO continue developing this file starting by adding "mode" parameter and then adjusting this part (cox) and then continue
                     config = self.get_config_file("CoxRegressor")
                     res = dataset # taking the final dataset after cleaning as a result # TODO check if needed in the unnecessary final call in show_traverse
@@ -435,6 +437,7 @@ class SurvivalQlearner:
 
                 if a == 12:
                     # Execute Neural Network
+                    dataset.to_csv(f"./save/rotterdam_cox_L/{self.file_name}_pipeline_{'_'.join(str(x) for x in actions_list)}_NN_cleaned.csv", index=False)
                     config = self.get_config_file("NeuralNetwork")
                     res = dataset # taking the final dataset after cleaning as a result # TODO check if needed in the unnecessary final call in show_traverse
                     nn = L2C_class[a](dataset = dataset, time_column = time_col, target_goal = event_col, config=config, verbose = self.verbose)
@@ -486,6 +489,7 @@ class SurvivalQlearner:
                     if a == 15:
                         # Execute Random Survival Forest
                         print(f'\nIN RSF --------------------------------> {dataset}\n\n')
+                        dataset.to_csv(f"./save/rotterdam_cox_L/{self.file_name}_pipeline_{'_'.join(str(x) for x in actions_list)}_RSF_cleaned.csv", index=False)
                         config = self.get_config_file("RSF")
                         rsf = L2C_class[a](dataset=dataset, time_column=time_col, target_goal=event_col, config=config, verbose=self.verbose)
                         survival_probabilities, c_index = rsf.fit_rsf_model()
@@ -494,7 +498,7 @@ class SurvivalQlearner:
 
                     if a == 16:
                         # Execute Cox Model
-
+                        dataset.to_csv(f"./save/rotterdam_cox_L/{self.file_name}_pipeline_{'_'.join(str(x) for x in actions_list)}_COX_cleaned.csv", index=False)
                         config = self.get_config_file("CoxRegressor")
                         res = dataset # taking the final dataset after cleaning as a result # TODO check if needed in the unnecessary final call in show_traverse
                         cox_model = L2C_class[a](dataset=dataset, time_column=time_col, target_goal=event_col, config=config, verbose=self.verbose)
@@ -507,7 +511,7 @@ class SurvivalQlearner:
 
                     if a == 17:
                         # Execute Neural Network
-
+                        dataset.to_csv(f"./save/rotterdam_cox_L/{self.file_name}_pipeline_{'_'.join(str(x) for x in actions_list)}_NN_cleaned.csv", index=False)
                         config = self.get_config_file("NeuralNetwork")
                         res = dataset # taking the final dataset after cleaning as a result # TODO check if needed in the unnecessary final call in show_traverse
                         nn = L2C_class[a](dataset = dataset, time_column = time_col, target_goal = event_col, config=config, verbose = self.verbose)
@@ -940,7 +944,7 @@ class SurvivalQlearner:
         # Return information about the best strategy and its performance
         print(rr)
         
-        with open('./save/'+str(self.file_name)+'_results.txt',
+        with open('./save/rotterdam_cox_L/'+str(self.file_name)+'_results.txt',
                   mode='a+') as rr_file:
 
             print("{}".format(rr), file=rr_file)
@@ -949,7 +953,7 @@ class SurvivalQlearner:
         best_overall.insert(0, "CleanSurv")
         timestamps.insert(0, "Timestamps")
         timestamps.insert(0, "CleanSurv")
-        with open('./save/'+str(self.file_name)+'_timestamps.txt', mode='a') as rr_file:
+        with open('./save/rotterdam_cox_L/'+str(self.file_name)+'_timestamps.txt', mode='a') as rr_file:
             print("{}".format(best_overall), file=rr_file)
             print("{}".format(timestamps), file=rr_file)
 
@@ -1084,7 +1088,7 @@ class SurvivalQlearner:
 
         if p[1] is not None:
 
-            with open('./save/'+dataset_name+'_results.txt',
+            with open('./save/rotterdam_cox_L/'+dataset_name+'_results.txt',
                     mode='a+') as rr_file:
 
                 print("{}".format(rr), file=rr_file)
@@ -1154,7 +1158,7 @@ class SurvivalQlearner:
             pipeline_counter += 1
         print(rr)
 
-        with open('./save/'+str(self.file_name)+'_results.txt',
+        with open('./save/rotterdam_cox_L/'+str(self.file_name)+'_results.txt',
                   mode='a+') as rr_file:
             print("{}".format(rr), file=rr_file)
 
@@ -1194,7 +1198,7 @@ class SurvivalQlearner:
 
         if p[1] is not None:
 
-            with open('./save/'+dataset_name+'_results.txt',
+            with open('./save/rotterdam_cox_L/'+dataset_name+'_results.txt',
                       mode='a') as rr_file:
 
                 print("{}".format(rr), file=rr_file)
@@ -1367,7 +1371,7 @@ class SurvivalQlearner:
             timestamps.insert(0, "Timestamps")
             timestamps.insert(0, "Grid_Search")
 
-            with open('./save/'+dataset_name+'_timestamps.txt', mode='a') as rr_file:
+            with open('./save/rotterdam_cox_L/'+dataset_name+'_timestamps.txt', mode='a') as rr_file:
                 print("{}".format(results), file=rr_file)
                 print("{}".format(timestamps), file=rr_file)
 
